@@ -1,0 +1,30 @@
+select * from "Films"
+WHERE "Film_Year" > 2000;
+
+SELECT * FROM "Films"
+WHERE "Film_Name" like '%a%';
+
+SELECT * FROM "Films"
+WHERE "Film_Name" like 'A%';
+
+SELECT * FROM "Films"
+WHERE "Film_Year" < 2000 or "Film_Name" like '%a%';
+
+SELECT * FROM "Films"
+WHERE "Film_Year" < 2000 and "Film_Name" like '%a%';
+
+SELECT "Film_Name", "Author_name" FROM "Films"
+INNER JOIN "Authors"
+on "Film_Author" = "Authors"."Author_id";
+
+SELECT "Film_Name", "Author_name" FROM "Films"
+INNER JOIN "Authors"
+on "Film_Author" = "Authors"."Author_id"
+WHERE "Author_name" LIKE '%a%';
+
+SELECT "Film_Name", "Genre_name" FROM "Films"
+INNER JOIN "FilmsGenres"
+ON "Films"."Film_Id" = "FilmsGenres"."Film_id"
+INNER JOIN "Genres"
+ON "FilmsGenres"."Genre_id" = "Genres"."Genre_id"
+
