@@ -6,23 +6,30 @@
  * Time: 19:28
  */
 
-//require_once ('Humans.php');
-//require_once ('H:\Работа\GitProjects\lesson02\Humans\Student.php');
+//require_once ('Humanphp');
+//require_once ('H:\Работа\GitProjects\lesson02\Human\Student.php');
 //include_once ('Employee.php');
 
 /**
  * Class Employee
  */
-class Employee //extends Humans
+namespace lesson02;
+require_once('Human.php');
+
+class Employee extends Human
 {
-    //private $Oklad;
-    private $Date;
-    private $Sum;
-    protected $ArrMoney;
-    //private $arr;
+    private $date;
+    private $sum;
+    protected $arrMoney;
+
+    public static $count1 = 0;
+
     function __construct()
     {
-        //$Oklad = 50000;
+        //$this->Date = $date;
+        //$this->Sum = $sum;
+        self::$count++;
+        self::$count1++;
     }
 
     /*    function getOklad()
@@ -37,32 +44,51 @@ class Employee //extends Humans
     */
 
     /**
-     * @param int $sum
-     * @param string $date
      *
      * @return array
      */
-    function addMoney(int $sum, string $date)
+    function addMoney($sum, $date)
     {
-        print_r("me call ");
+        //$arrMoney = [[]];
+        //print_r("me call ");
         if ($sum === null)
-            $sum = 50000;//$this->Oklad;
+            $sum = 50000;       //если мы обнаруживаем, что сумма не указана, присваиваем этой переменной оклад - 50000
 
+        //$arrMoney = [[]];
 
-        if (empty($arrMoney))
+       /* if (isset($arrMoney))
         {
-            //$arr = [$this->Sum = $sum, $this->Date = $date];
 
-            /* @var arrMoney Sum in Date [][]*/
-            $arrMoney = [$this->Sum = $sum, $this->Date = $date]; //$arr;
+
+
+            $arrMoney = [[$this->Sum = $sum, $this->Date = $date]]; //$arr;
+            $this->ArrMoney = $arrMoney;
+
+            print_r("If array is empty \n");
+            print_r($arrMoney);
+
+           // print_r("result \n");
+           // print_r($this->ArrMoney);
+            return;
         }
 
-        //$arr = [$this->Sum = $sum, $this->Date = $date];
-        array_push($arrMoney, [$this->Sum = $sum, $this->Date = $date]); //$arr);
+        else*/
 
+        //var_export($arrMoney);
+        //foreach ($arrMoney as $value)
+            //print_r("--------------my arrmoney----------" . $value . " THE END " . "\n");
+        //print_r("if empty " . $arrMoney . "\n");
+        $arr = [$this->sum = $sum, $this->date = $date];
+
+        //array_push($arrMoney, [[$this->Sum = $sum, $this->Date = $date]]); //$arr);
+
+        $arrMoney = $arr; //$arr);
+
+        //print_r("after array_push \n");
+        //print_r($arrMoney);
 
         //$arrMoney[] = $this->Sum = $sum;//, $this->Date = $date];
-        $this->ArrMoney[] = $arrMoney;
+        $this->arrMoney[] = $arrMoney;
 //        print_r($this->ArrMoney);
     }
 
@@ -71,14 +97,34 @@ class Employee //extends Humans
      */
     function getMoney()
     {
-        return $this->ArrMoney;
+        return $this->arrMoney;
     }
 }
 
-print_r("----------------------CLASS EMPLOYEE!-------------------");
+print_r("----------------------CLASS EMPLOYEE!------------------- \n");
 
-$objEmployee = new Employee();
+$objEmployee = new Employee(); //("17/09/2018", 10000);
 $objEmployee->addMoney(10000, "17/09/2018");
-$objEmployee->addMoney(null, "19/09/2018");
+$objEmployee->addMoney(null,"19/09/2018");
+$objEmployee->fio = "Ivan Vasilev";
+$objEmployee->age = 34;
 
-print_r($objEmployee->getMoney());
+$objEmployee1 = new Employee(); //("11/09/2018", null);
+$objEmployee1->addMoney(null, "11/09/2018");
+$objEmployee1->addMoney(5000,"29/09/2018");
+$objEmployee1->fio = "Fedor Vasilevskiy";
+$objEmployee1->age = 41;
+
+$objEmployee2 = new Employee(); //("1/09/2018", 12000);
+$objEmployee2->addMoney(1000, "5/09/2018");
+$objEmployee2->addMoney(3000,"6/09/2018");
+$objEmployee2->fio = "Timur Belov";
+$objEmployee2->age = 25;
+
+
+print_r($objEmployee);
+print_r($objEmployee1);
+print_r($objEmployee2);
+
+print_r("------COUNT with Human------ " . $objEmployee::$count . "\n");
+print_r("------COUNT for Employee------ " . $objEmployee::$count1 . "\n");
